@@ -252,8 +252,8 @@ end
 
         # Test a BlockIndex with dimension N=1 for an array with dimension N=2
         A = [1 2; 3 4]
-        @test A[Block(1)] == A
-        @test A[Block(1,1)] == A
+        @test A[Block(1)] == A == view(A,Block(1))
+        @test A[Block(1,1)] == A == view(A,Block(1,1))
         @test A[BlockIndex(1,1)] == A[Block(1)][1] == A[1,1]
         @test A[BlockIndex(1,4)] == A[Block(1)][4] == A[2,2]
         @test_throws BlockBoundsError A[Block(2)]
